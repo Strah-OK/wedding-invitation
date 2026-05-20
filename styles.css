@@ -6663,3 +6663,54 @@ textarea,
 
 /* End Kola local fix: custom fonts v1 */
 
+/* Kola safety fix: loader cannot hang v1 */
+
+/*
+  Страховка для Netlify/mobile:
+  если JS не сработал или CSS fallback завис,
+  заставка всё равно уходит сама.
+*/
+
+body.loader-active {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.invite-loader,
+.kola-loader {
+  animation-name: kola-loader-emergency-hide;
+  animation-duration: 8.2s;
+  animation-timing-function: steps(1, end);
+  animation-fill-mode: forwards;
+}
+
+@keyframes kola-loader-emergency-hide {
+  0%, 98% {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.invite-loader.is-hidden,
+.kola-loader.is-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invite-loader,
+  .kola-loader {
+    display: none !important;
+  }
+}
+
+/* End Kola safety fix: loader cannot hang v1 */
+

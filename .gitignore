@@ -12,3 +12,4 @@ public/
 *.bak*
 *.log
 dist-netlify/
+.vercel/
