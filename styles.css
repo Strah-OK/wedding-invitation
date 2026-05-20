@@ -7161,3 +7161,543 @@ body:not(.gsap-loader-enabled) .invite-photo-card {
 
 /* End Kola native loader fix: outer flap and wax seal v1 */
 
+/* Kola UI experiment: hero slideshow v3 */
+
+/*
+  FIX:
+  - убран opacity: 0 !important, который ломал CSS animation;
+  - первое фото видно сразу;
+  - слайды реально сменяются каждые ~4 секунды;
+  - старое assets/img/couple/hero.jpg не используется в hero.
+*/
+
+.hero-slideshow-section {
+  min-height: auto !important;
+  display: block !important;
+  margin: 0 0 54px !important;
+  padding: 22px 0 18px !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  isolation: isolate !important;
+}
+
+.hero-slideshow-section::after,
+.hero-slideshow-section .hero__image-wrap,
+.hero-poster,
+.hero-poster__photo,
+.hero-poster__names {
+  display: none !important;
+  content: none !important;
+}
+
+.hero-slideshow-section .hero__topline {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: max-content !important;
+  max-width: calc(100% - 28px) !important;
+  margin: 0 auto 14px !important;
+  padding: 9px 15px !important;
+  border: 1px solid rgba(68, 51, 43, 0.12) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 248, 237, 0.72) !important;
+  color: rgba(68, 51, 43, 0.82) !important;
+  box-shadow: 0 12px 34px rgba(68, 51, 43, 0.08) !important;
+  font-size: 0.68rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  text-shadow: none !important;
+}
+
+.hero-slideshow-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 36px !important;
+  background:
+    radial-gradient(circle at 72% 80%, rgba(87, 116, 95, 0.18), transparent 13rem),
+    linear-gradient(180deg, rgba(255, 248, 237, 0.98), rgba(236, 220, 197, 0.92)) !important;
+  box-shadow:
+    0 28px 78px rgba(46, 35, 31, 0.16),
+    inset 0 0 0 1px rgba(68, 51, 43, 0.10) !important;
+}
+
+.hero-slideshow {
+  position: relative !important;
+  overflow: hidden !important;
+  height: clamp(330px, 62svh, 560px) !important;
+  border-radius: 36px 36px 0 0 !important;
+  background: #24382f !important;
+}
+
+.hero-slideshow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 20, 16, 0.05) 0%,
+      rgba(15, 20, 16, 0.00) 44%,
+      rgba(15, 20, 16, 0.28) 100%
+    );
+}
+
+.hero-slide {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1;
+  display: block !important;
+  margin: 0 !important;
+  opacity: 0;
+  transform: scale(1.025);
+  animation-name: hero-real-slide-show-v3;
+  animation-duration: 12s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: opacity, transform;
+}
+
+.hero-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  filter: saturate(0.98) contrast(0.98) brightness(0.96) !important;
+}
+
+.hero-slide--one {
+  animation-delay: 0s;
+}
+
+.hero-slide--two {
+  animation-delay: 4s;
+}
+
+.hero-slide--three {
+  animation-delay: 8s;
+}
+
+/* Первый кадр виден сразу, без зелёной паузы */
+.hero-slide--one {
+  opacity: 1;
+}
+
+.hero-slideshow-copy {
+  position: relative !important;
+  z-index: 12 !important;
+  display: grid !important;
+  justify-items: center !important;
+  gap: 8px !important;
+  padding: 22px 18px 0 !important;
+  text-align: center !important;
+  background:
+    linear-gradient(180deg, rgba(255,248,237,0.74), rgba(255,248,237,0.98)) !important;
+}
+
+.hero-slideshow-date {
+  margin: 0 !important;
+  display: inline-flex !important;
+  padding: 6px 13px !important;
+  border: 1px solid rgba(103, 44, 39, 0.15) !important;
+  border-radius: 999px !important;
+  color: rgba(103, 44, 39, 0.66) !important;
+  background: rgba(255,255,255,.42) !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.hero-slideshow-copy h1 {
+  margin: 0 !important;
+  color: #4b332c !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 400 !important;
+  font-size: clamp(3.4rem, 15vw, 6.3rem) !important;
+  line-height: 0.78 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+
+.hero-floral-stage {
+  position: relative !important;
+  z-index: 13 !important;
+  width: min(100%, 460px) !important;
+  min-height: 166px !important;
+  margin: -6px auto 4px !important;
+}
+
+.hero-floral--slideshow {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.hero-floral--slideshow .hero-floral__stem {
+  fill: none !important;
+  stroke: rgba(86, 99, 73, 0.74) !important;
+  stroke-width: 3 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.hero-floral--slideshow .hero-floral__stem--soft {
+  stroke: rgba(86, 99, 73, 0.35) !important;
+  stroke-width: 2 !important;
+}
+
+.hero-floral--slideshow .hero-leaf--dark {
+  fill: #203d31 !important;
+}
+
+.hero-floral--slideshow .hero-leaf--green {
+  fill: #5f8067 !important;
+}
+
+.hero-floral--slideshow .hero-flower__petal--ivory {
+  fill: #f7efe2 !important;
+}
+
+.hero-floral--slideshow .hero-flower__petal--champagne {
+  fill: #d9c0a1 !important;
+}
+
+.hero-floral--slideshow .hero-flower__petal--sage {
+  fill: #9fb092 !important;
+}
+
+.hero-floral--slideshow .hero-flower__petal--dark {
+  fill: #17352b !important;
+}
+
+.hero-floral--slideshow .hero-flower__core {
+  fill: #c7a46f !important;
+}
+
+.hero-slideshow-section .scroll-cue {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: max-content !important;
+  margin: 14px auto 0 !important;
+  color: rgba(68, 51, 43, 0.58) !important;
+  font-size: 0.86rem !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+@keyframes hero-real-slide-show-v3 {
+  0% {
+    opacity: 0;
+    transform: scale(1.035);
+    z-index: 1;
+  }
+
+  3% {
+    opacity: 1;
+    transform: scale(1.025);
+    z-index: 3;
+  }
+
+  29% {
+    opacity: 1;
+    transform: scale(1.005);
+    z-index: 3;
+  }
+
+  36% {
+    opacity: 0;
+    transform: scale(1.000);
+    z-index: 2;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.000);
+    z-index: 1;
+  }
+}
+
+@media (min-width: 720px) {
+  .hero-slideshow-card {
+    border-radius: 40px !important;
+  }
+
+  .hero-slideshow {
+    height: clamp(430px, 66svh, 620px) !important;
+    border-radius: 40px 40px 0 0 !important;
+  }
+
+  .hero-slideshow-copy h1 {
+    font-size: clamp(4.2rem, 9vw, 6.4rem) !important;
+  }
+
+  .hero-floral-stage {
+    margin-top: -10px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+  }
+
+  .hero-slide--one {
+    opacity: 1 !important;
+  }
+}
+
+/* End Kola UI experiment: hero slideshow v3 */
+
+/* === KOLA HERO RATIO FIX V5 START === */
+/*
+  Clean hero-photo fix:
+  - all hero photos are 853x1280;
+  - the frame must use the same ratio;
+  - no object-fit: contain side stripes;
+  - no old assets/img/couple/hero.jpg;
+  - lower hero decoration remains separate: date / names / flowers.
+*/
+
+:root {
+  --kola-hero-photo-ratio: 853 / 1280;
+}
+
+/* Real photo frame: exact ratio of source photos. */
+.hero-real-slide-show-v3 .hero-slideshow-frame,
+.hero-real-slide-show-v3 .hero-slideshow__frame,
+.hero-real-slide-show-v3 .hero-slideshow-stage,
+.hero-real-slide-show-v3 .hero-slideshow__stage,
+.hero-real-slide-show-v3 .hero-photo-frame,
+.hero-real-slide-show-v3 .hero-photo-stage,
+.hero-slideshow .hero-slideshow-frame,
+.hero-slideshow .hero-slideshow__frame,
+.hero-slideshow .hero-slideshow-stage,
+.hero-slideshow .hero-slideshow__stage,
+.hero-slideshow .hero-photo-frame,
+.hero-slideshow .hero-photo-stage {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: var(--kola-hero-photo-ratio) !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  border-radius: 28px 28px 0 0;
+}
+
+/* If slides are implemented as background-image blocks. */
+.hero-real-slide-show-v3 .hero-slide,
+.hero-real-slide-show-v3 .slide,
+.hero-real-slide-show-v3 .slideshow-slide,
+.hero-real-slide-show-v3 .hero-photo-slide,
+.hero-slideshow .hero-slide,
+.hero-slideshow .slide,
+.hero-slideshow .slideshow-slide,
+.hero-slideshow .hero-photo-slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+}
+
+/* If slides are implemented through <img>. */
+.hero-real-slide-show-v3 .hero-slide img,
+.hero-real-slide-show-v3 .slide img,
+.hero-real-slide-show-v3 .slideshow-slide img,
+.hero-real-slide-show-v3 .hero-photo-slide img,
+.hero-real-slide-show-v3 picture img,
+.hero-slideshow .hero-slide img,
+.hero-slideshow .slide img,
+.hero-slideshow .slideshow-slide img,
+.hero-slideshow .hero-photo-slide img,
+.hero-slideshow picture img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  background: transparent !important;
+}
+
+/* Lower hero layers must stay above decorative background and below nothing. */
+.hero-real-slide-show-v3 .hero-date,
+.hero-real-slide-show-v3 .hero-date-chip,
+.hero-real-slide-show-v3 .wedding-date,
+.hero-real-slide-show-v3 .date-pill,
+.hero-real-slide-show-v3 .hero-names,
+.hero-real-slide-show-v3 .couple-names,
+.hero-real-slide-show-v3 .hero-title,
+.hero-real-slide-show-v3 .hero-signature,
+.hero-real-slide-show-v3 .hero-flowers,
+.hero-real-slide-show-v3 .hero-floral,
+.hero-real-slide-show-v3 .hero-bouquet,
+.hero-real-slide-show-v3 .botanical-line,
+.hero-slideshow .hero-date,
+.hero-slideshow .hero-date-chip,
+.hero-slideshow .wedding-date,
+.hero-slideshow .date-pill,
+.hero-slideshow .hero-names,
+.hero-slideshow .couple-names,
+.hero-slideshow .hero-title,
+.hero-slideshow .hero-signature,
+.hero-slideshow .hero-flowers,
+.hero-slideshow .hero-floral,
+.hero-slideshow .hero-bouquet,
+.hero-slideshow .botanical-line {
+  position: relative;
+  z-index: 3;
+}
+
+/* Mobile-first: keep photo dominant, but do not create artificial side bands. */
+@media (max-width: 760px) {
+  .hero-real-slide-show-v3 .hero-slideshow-frame,
+  .hero-real-slide-show-v3 .hero-slideshow__frame,
+  .hero-real-slide-show-v3 .hero-slideshow-stage,
+  .hero-real-slide-show-v3 .hero-slideshow__stage,
+  .hero-real-slide-show-v3 .hero-photo-frame,
+  .hero-real-slide-show-v3 .hero-photo-stage,
+  .hero-slideshow .hero-slideshow-frame,
+  .hero-slideshow .hero-slideshow__frame,
+  .hero-slideshow .hero-slideshow-stage,
+  .hero-slideshow .hero-slideshow__stage,
+  .hero-slideshow .hero-photo-frame,
+  .hero-slideshow .hero-photo-stage {
+    border-radius: 26px 26px 0 0;
+  }
+}
+
+/* Desktop/tablet: keep invite-card feeling, not giant stretched photo. */
+@media (min-width: 761px) {
+  .hero-real-slide-show-v3 .hero-slideshow-frame,
+  .hero-real-slide-show-v3 .hero-slideshow__frame,
+  .hero-real-slide-show-v3 .hero-slideshow-stage,
+  .hero-real-slide-show-v3 .hero-slideshow__stage,
+  .hero-real-slide-show-v3 .hero-photo-frame,
+  .hero-real-slide-show-v3 .hero-photo-stage,
+  .hero-slideshow .hero-slideshow-frame,
+  .hero-slideshow .hero-slideshow__frame,
+  .hero-slideshow .hero-slideshow-stage,
+  .hero-slideshow .hero-slideshow__stage,
+  .hero-slideshow .hero-photo-frame,
+  .hero-slideshow .hero-photo-stage {
+    max-height: min(76vh, 760px) !important;
+  }
+}
+/* === KOLA HERO RATIO FIX V5 END === */
+
+/* === KOLA HERO FLORAL OVERLAY V6 START === */
+/*
+  Hero lower composition:
+  - real photo stays clean;
+  - floral SVG becomes the decorative layer;
+  - “Оля и Костя” stays above the floral layer;
+  - old handmade circle/leaf decoration is hidden.
+*/
+
+.hero-real-slide-show-v3,
+.hero-slideshow {
+  position: relative;
+}
+
+/* Hide previous handmade floral/circle decoration in the hero only. */
+.hero-real-slide-show-v3 .hero-flowers:not(.hero-floral-ornament-svg),
+.hero-real-slide-show-v3 .hero-floral:not(.hero-floral-ornament-svg),
+.hero-real-slide-show-v3 .hero-bouquet:not(.hero-floral-ornament-svg),
+.hero-real-slide-show-v3 .botanical-line:not(.hero-floral-ornament-svg),
+.hero-real-slide-show-v3 .hero-leaves:not(.hero-floral-ornament-svg),
+.hero-slideshow .hero-flowers:not(.hero-floral-ornament-svg),
+.hero-slideshow .hero-floral:not(.hero-floral-ornament-svg),
+.hero-slideshow .hero-bouquet:not(.hero-floral-ornament-svg),
+.hero-slideshow .botanical-line:not(.hero-floral-ornament-svg),
+.hero-slideshow .hero-leaves:not(.hero-floral-ornament-svg) {
+  display: none !important;
+}
+
+/* New SVG ornament layer. It intentionally overlaps the name area. */
+.hero-real-slide-show-v3 .hero-floral-ornament-svg,
+.hero-slideshow .hero-floral-ornament-svg {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: min(128%, 760px);
+  max-width: none;
+  height: auto;
+  margin: clamp(-42px, -7vw, -26px) auto clamp(-118px, -16vw, -76px);
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.72;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 18px 28px rgba(67, 49, 34, 0.13));
+}
+
+/* Keep date and names above the SVG. */
+.hero-real-slide-show-v3 .hero-date,
+.hero-real-slide-show-v3 .hero-date-chip,
+.hero-real-slide-show-v3 .wedding-date,
+.hero-real-slide-show-v3 .date-pill,
+.hero-slideshow .hero-date,
+.hero-slideshow .hero-date-chip,
+.hero-slideshow .wedding-date,
+.hero-slideshow .date-pill {
+  position: relative;
+  z-index: 5;
+}
+
+.hero-real-slide-show-v3 .hero-couple-names,
+.hero-real-slide-show-v3 .couple-names,
+.hero-real-slide-show-v3 .hero-names,
+.hero-real-slide-show-v3 .hero-title,
+.hero-real-slide-show-v3 .hero-signature,
+.hero-slideshow .hero-couple-names,
+.hero-slideshow .couple-names,
+.hero-slideshow .hero-names,
+.hero-slideshow .hero-title,
+.hero-slideshow .hero-signature {
+  position: relative;
+  z-index: 6;
+  margin-top: clamp(8px, 2vw, 18px);
+  text-shadow:
+    0 1px 0 rgba(255, 248, 236, 0.82),
+    0 12px 34px rgba(66, 43, 35, 0.12);
+}
+
+/* On narrow phones the ornament should not push layout too much. */
+@media (max-width: 430px) {
+  .hero-real-slide-show-v3 .hero-floral-ornament-svg,
+  .hero-slideshow .hero-floral-ornament-svg {
+    width: 140%;
+    margin-top: -30px;
+    margin-bottom: -94px;
+    opacity: 0.68;
+  }
+}
+
+/* On larger screens keep it elegant, not huge. */
+@media (min-width: 760px) {
+  .hero-real-slide-show-v3 .hero-floral-ornament-svg,
+  .hero-slideshow .hero-floral-ornament-svg {
+    width: min(112%, 820px);
+    margin-top: -38px;
+    margin-bottom: -126px;
+  }
+}
+/* === KOLA HERO FLORAL OVERLAY V6 END === */
+
