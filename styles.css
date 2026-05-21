@@ -11246,3 +11246,368 @@ body.page-reveal-armed:not(.page-revealed) .ambient-bg {
 }
 /* === KOLA EMPTY PAGE AND DETAILS SVG FIX V50 END === */
 
+/* === KOLA DETAILS RSVP POLISH V51 START === */
+/*
+  Details polish:
+  - larger SVG icons;
+  - subtle living motion;
+  - more air inside and between cards;
+  - QR image without beige background frame;
+  - RSVP deadline text changed in HTML.
+*/
+
+.details-elegant {
+  gap: 28px !important;
+}
+
+.detail-elegant-card {
+  padding: 32px 26px !important;
+  gap: 22px !important;
+  align-items: center !important;
+}
+
+.detail-elegant-card--book {
+  padding-top: 34px !important;
+  padding-bottom: 34px !important;
+}
+
+.detail-elegant-card--flowers {
+  padding-top: 36px !important;
+  padding-bottom: 28px !important;
+}
+
+.detail-elegant-content {
+  display: grid !important;
+  justify-items: center !important;
+  gap: 12px !important;
+  text-align: center !important;
+}
+
+.detail-elegant-content h3 {
+  margin-top: 0 !important;
+}
+
+.detail-elegant-content p {
+  margin-top: 0 !important;
+  max-width: 31ch !important;
+  line-height: 1.62 !important;
+}
+
+.detail-elegant-content .button,
+.detail-elegant-card .button {
+  margin-top: 8px !important;
+}
+
+/* Bigger generated SVG icons, no small circular background */
+.detail-elegant-icon,
+.detail-elegant-icon--image {
+  width: 128px !important;
+  height: 128px !important;
+  justify-self: center !important;
+  display: grid !important;
+  place-items: center !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.detail-elegant-icon--image img,
+.detail-elegant-icon img {
+  width: 124px !important;
+  height: 124px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  filter: drop-shadow(0 12px 18px rgba(68, 51, 43, 0.09));
+  transform-origin: center center !important;
+  animation: details-icon-breathe-v51 5.6s ease-in-out infinite !important;
+}
+
+.detail-elegant-card--book .detail-elegant-icon--image img,
+.detail-elegant-card--book .detail-elegant-icon img {
+  width: 132px !important;
+  height: 132px !important;
+  animation-duration: 5.8s !important;
+}
+
+.detail-elegant-card--flowers .detail-elegant-icon--image img,
+.detail-elegant-card--flowers .detail-elegant-icon img {
+  width: 136px !important;
+  height: 136px !important;
+  animation-delay: -1.4s !important;
+  animation-duration: 6.2s !important;
+}
+
+/* QR: remove beige frame/rectangle, keep QR itself clean */
+.details-block .detail-elegant-qr,
+.details-block .qr-frame.detail-elegant-qr {
+  margin-top: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.details-block .detail-elegant-qr img,
+.details-block .qr-frame.detail-elegant-qr img {
+  width: min(100%, 220px) !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow:
+    0 14px 30px rgba(68, 51, 43, 0.10),
+    0 0 0 1px rgba(68, 51, 43, 0.06) !important;
+}
+
+@keyframes details-icon-breathe-v51 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg) scale(1);
+    filter: drop-shadow(0 12px 18px rgba(68, 51, 43, 0.08));
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(0.7deg) scale(1.035);
+    filter: drop-shadow(0 18px 24px rgba(68, 51, 43, 0.12));
+  }
+}
+
+@media (max-width: 430px) {
+  .details-elegant {
+    gap: 24px !important;
+  }
+
+  .detail-elegant-card {
+    padding: 30px 22px !important;
+    gap: 20px !important;
+  }
+
+  .detail-elegant-icon,
+  .detail-elegant-icon--image {
+    width: 118px !important;
+    height: 118px !important;
+  }
+
+  .detail-elegant-icon--image img,
+  .detail-elegant-icon img {
+    width: 116px !important;
+    height: 116px !important;
+  }
+
+  .detail-elegant-card--book .detail-elegant-icon--image img,
+  .detail-elegant-card--book .detail-elegant-icon img {
+    width: 122px !important;
+    height: 122px !important;
+  }
+
+  .detail-elegant-card--flowers .detail-elegant-icon--image img,
+  .detail-elegant-card--flowers .detail-elegant-icon img {
+    width: 126px !important;
+    height: 126px !important;
+  }
+
+  .details-block .detail-elegant-qr img,
+  .details-block .qr-frame.detail-elegant-qr img {
+    width: min(100%, 214px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-elegant-icon--image img,
+  .detail-elegant-icon img {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+/* === KOLA DETAILS RSVP POLISH V51 END === */
+
+/* === KOLA DETAILS CLOSING POLISH V52 START === */
+/*
+  Details + closing polish:
+  - details SVG icons bigger;
+  - QR slightly bigger;
+  - equal bottom rhythm in details cards;
+  - closing block has no background rectangle;
+  - closing title is smaller and fits better.
+*/
+
+/* Details: more air and equal bottom rhythm */
+.details-elegant {
+  gap: 32px !important;
+}
+
+.detail-elegant-card,
+.detail-elegant-card--book,
+.detail-elegant-card--flowers {
+  padding: 38px 26px 40px !important;
+  gap: 24px !important;
+}
+
+.detail-elegant-content {
+  gap: 14px !important;
+}
+
+.detail-elegant-content p {
+  max-width: 32ch !important;
+  line-height: 1.66 !important;
+}
+
+/* Bigger generated SVG icons */
+.detail-elegant-icon,
+.detail-elegant-icon--image {
+  width: 158px !important;
+  height: 158px !important;
+}
+
+.detail-elegant-icon--image img,
+.detail-elegant-icon img {
+  width: 154px !important;
+  height: 154px !important;
+}
+
+.detail-elegant-card--book .detail-elegant-icon--image img,
+.detail-elegant-card--book .detail-elegant-icon img {
+  width: 164px !important;
+  height: 164px !important;
+}
+
+.detail-elegant-card--flowers .detail-elegant-icon--image img,
+.detail-elegant-card--flowers .detail-elegant-icon img {
+  width: 170px !important;
+  height: 170px !important;
+}
+
+/* QR: bigger, still without background rectangle */
+.details-block .detail-elegant-qr,
+.details-block .qr-frame.detail-elegant-qr,
+.detail-elegant-qr.qr-frame {
+  margin-top: 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.details-block .detail-elegant-qr img,
+.details-block .qr-frame.detail-elegant-qr img,
+.detail-elegant-qr.qr-frame img {
+  width: min(100%, 252px) !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow:
+    0 14px 30px rgba(68, 51, 43, 0.10),
+    0 0 0 1px rgba(68, 51, 43, 0.06) !important;
+}
+
+/* Closing / До встречи: remove card background */
+.closing-block {
+  padding: 34px 18px 70px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.closing-block::before,
+.closing-block::after {
+  content: none !important;
+  display: none !important;
+}
+
+.closing-block .eyebrow {
+  margin-bottom: 20px !important;
+}
+
+/* Make final title smaller and wider, so it fits around two lines */
+.closing-block h2,
+.closing-block .section-heading h2 {
+  max-width: 420px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  font-size: clamp(2.05rem, 8.2vw, 2.72rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.025em !important;
+  text-align: center !important;
+}
+
+.closing-block p {
+  max-width: 390px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* Mobile */
+@media (max-width: 430px) {
+  .details-elegant {
+    gap: 28px !important;
+  }
+
+  .detail-elegant-card,
+  .detail-elegant-card--book,
+  .detail-elegant-card--flowers {
+    padding: 36px 22px 38px !important;
+    gap: 22px !important;
+  }
+
+  .detail-elegant-icon,
+  .detail-elegant-icon--image {
+    width: 146px !important;
+    height: 146px !important;
+  }
+
+  .detail-elegant-icon--image img,
+  .detail-elegant-icon img {
+    width: 144px !important;
+    height: 144px !important;
+  }
+
+  .detail-elegant-card--book .detail-elegant-icon--image img,
+  .detail-elegant-card--book .detail-elegant-icon img {
+    width: 154px !important;
+    height: 154px !important;
+  }
+
+  .detail-elegant-card--flowers .detail-elegant-icon--image img,
+  .detail-elegant-card--flowers .detail-elegant-icon img {
+    width: 158px !important;
+    height: 158px !important;
+  }
+
+  .details-block .detail-elegant-qr img,
+  .details-block .qr-frame.detail-elegant-qr img,
+  .detail-elegant-qr.qr-frame img {
+    width: min(100%, 242px) !important;
+  }
+
+  .closing-block h2,
+  .closing-block .section-heading h2 {
+    max-width: 360px !important;
+    font-size: clamp(1.92rem, 7.7vw, 2.28rem) !important;
+    line-height: 1.04 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-elegant-icon--image img,
+  .detail-elegant-icon img {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+/* === KOLA DETAILS CLOSING POLISH V52 END === */
+
